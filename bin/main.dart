@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'dart:math';
 // Challenge 1
 // Read the two problems below and write test cases for them, make sure test cases run and fail
 
@@ -7,8 +9,32 @@
 // Examples:
 // lengthen("abcdefg", "ab") ➞ "abababa"
 // lengthen("ingenius", "forest") ➞ "forestfo"
+
 String lengthen(String word1, String word2){
-  return null;
+ String newWord='';
+ if(word1.length==0 || word2.length==0)
+   {
+     print("Null String. Lengthening Not Possible");
+     return null;
+   }
+ if(word1.length>word2.length)
+   {
+     for(int i=0;newWord.length<word1.length;i++) {
+       newWord = newWord + word2;
+     }
+     newWord=newWord.substring(0,word1.length);
+   }else if(word1.length<word2.length){
+        for(int i=0;newWord.length<word2.length;i++)
+          {
+            newWord=newWord+word1;
+          }
+      newWord=newWord.substring(0,word2.length);
+ }
+ else{
+   print("Strings are Equal");
+   return null;
+ }
+ return newWord;
 }
 
 // Challenge 3
@@ -18,10 +44,36 @@ String lengthen(String word1, String word2){
 // Examples
 // findBrokenKeys("happy birthday", "hawwy birthday") ➞ ["p"]
 // findBrokenKeys("beethoven", "affthoif5") ➞ ["b", "e", "v", "n"]
+
 List findBrokenKeys(String correct, String typed){
-  return null;
+  List<String> result=[];
+  if(correct.length!=typed.length)
+    {print("Strings not equal. Operation  Not Possible");
+    return [];
+    }
+  for(int i=0;i<correct.length;i++) {
+    if (correct[i] != typed[i]) {
+      result.add(correct[i]);
+
+    }
+  }
+
+  return result.toSet().toList();
 }
 
 
 main() {
+  print(lengthen("abcdefg", "ab"));
+  print(lengthen("ingenius", "forest"));
+  print(lengthen("abcdefg", "xxxxxxx")); //Edge Case
+  print(lengthen("abcdefg", ""));// Edge Case
+  print(lengthen("", ""));//Edge Case
+  print(findBrokenKeys("happy birthday","hawwy birthday"));
+  print(findBrokenKeys("beethoven", "affthoif5"));
+  print(findBrokenKeys("beethoven", "beethoven"));// Edge Case
+  print(findBrokenKeys("beethoven", "bee"));// Edge Case
+  print(findBrokenKeys("", ""));// Edge CAse
+
+
+
 }
